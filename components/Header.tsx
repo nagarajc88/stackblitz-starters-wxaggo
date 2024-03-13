@@ -27,15 +27,7 @@ const Header = () => {
     <>
       <header className="bg-white">
         <nav className="flex w-full justify-between items-center">
-          <div><Link href="/" className="text-ct-dark-600 text-2xl font-semibold">BCBS Nagaraj</Link></div>
           <ul className="flex items-center gap-4">
-            <li><Link href="/" className="text-ct-dark-600"> Home </Link></li>
-            {!user && (
-              <>
-                <li><Link href="/register" className="text-ct-dark-600">Register</Link></li>
-                <li><Link href="/login" className="text-ct-dark-600">Login</Link></li>
-              </>
-            )}
             {user && (
               <>
                 <li><Link href="/profile" className="text-ct-dark-600">Profile</Link></li>
