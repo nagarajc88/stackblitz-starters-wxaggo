@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <>
       <header className="bg-white">
-        <nav className="flex justify-between items-center">
+        <nav className="flex w-full justify-between items-center">
           <div><Link href="/" className="text-ct-dark-600 text-2xl font-semibold">BCBS Nagaraj</Link></div>
           <ul className="flex items-center gap-4">
             <li><Link href="/" className="text-ct-dark-600"> Home </Link></li>
