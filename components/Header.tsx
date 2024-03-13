@@ -1,6 +1,6 @@
 "use client";
 
-// import Spinner from "./Spinner";
+import Spinner from "./Spinner";
 import Link from "next/link";
 import useSession from "@/lib/useSession";
 import useStore from "@/store";
@@ -46,7 +46,7 @@ const Header = () => {
         </nav>
       </header>
       <div className="pt-4 pl-2 bg-ct-blue-600 fixed">
-        {/* {store.requestLoading && <Spinner color="text-ct-yellow-600" />} */}
+        {store.requestLoading && <Spinner color="text-ct-yellow-600" />}
       </div>
     </>
   );
