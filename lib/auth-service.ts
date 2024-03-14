@@ -14,8 +14,8 @@ async function handleResponse<T>(response: Response): Promise<T> {
       throw new Error(JSON.stringify(data.errors));
     }
     throw new Error(data.message || response.statusText);
-    }
-    return data as T;
+  }
+  return data as T;
 }
 
 export async function apiRegisterUser(credentials: string): Promise<User> {

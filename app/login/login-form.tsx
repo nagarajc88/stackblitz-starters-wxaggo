@@ -36,6 +36,7 @@ export default function LoginForm() {
     try {
       await apiLoginUser(JSON.stringify(credentials));
       toast.success("Logged in successfully");
+      localStorage.setItem("loggedIn", "true");
       return router.push("/profile");
     } catch (error: any) {
       if(error instanceof Error) {
