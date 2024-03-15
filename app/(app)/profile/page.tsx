@@ -1,10 +1,10 @@
-"use client";
+"user client"
 import Header from "@/components/Header";
 import { apiGetAuthUser } from "@/lib/auth-service";
 import { cookies } from "next/headers";
 import { AuthPageInvisible } from "@/lib/protect-page";
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
   // const cookieStore = cookies();
   // console.log(cookieStore);
   // const token = cookieStore.get("token");
@@ -16,7 +16,7 @@ export default function ProfilePage() {
   return (
     <>
       <Header />
-      <div className="container-fluid">
+      <section className="bg-ct-blue-600  min-h-screen pt-20">
         <div className="max-w-4xl mx-auto bg-ct-dark-100 rounded-md h-[20rem] flex justify-center items-center">
           <div>
             <p className="mb-3 text-5xl text-center font-semibold"> Profile Page </p>
@@ -29,7 +29,7 @@ export default function ProfilePage() {
             </div>
           </div>
         </div>
-      </div>
+      </section>
       <AuthPageInvisible />
     </>
   );

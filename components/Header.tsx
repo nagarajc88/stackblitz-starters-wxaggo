@@ -9,21 +9,24 @@ import { useRouter } from "next/navigation";
 
 const Header = () => {
   const store =  useStore();
-  const user =   { id:1, name: "nagaraj", email:"nag@gmail.com", password:"admin123", age: 20, role:"admin",verified:true}; //useSession();
+  const user = useSession();
   const router = useRouter();
+  let userLoggedIn:any = "false";
 
-  const userLoggedIn = localStorage.getItem('loggedIn');
-
+  if(typeof window !== 'undefined') {
+       userLoggedIn = localStorage.getItem('loggedIn');
+  }
+  
   const handleLogout = async () => {
-    store.setRequestLoading(true);
-    try {
-      await apiLogoutUser();
-      localStorage.setItem("loggedIn", "false");
-    } catch (error) {
-    } finally {
-      store.reset();
-      router.push("/login");
-    }
+        store.setRequestLoading(true);
+        try {
+          await apiLogoutUser();
+          localStorage.setItem("loggedIn", "false");
+        } catch (error) {
+        } finally {
+          store.reset();
+          router.push("/login");
+        }
   };
 
   return (
@@ -36,11 +39,6 @@ const Header = () => {
             </Link>
           </div>
           <ul className="flex items-center gap-4">
-            <li>
-              <Link href="/" className="text-ct-dark-600">
-                Home
-              </Link>
-            </li>
             {!user && (
               <>
                 <li>
@@ -55,15 +53,20 @@ const Header = () => {
                 </li>
               </>
             )}
-            {user && (
+            {user && userLoggedIn == "true" && (
               <>
+                <li>
+                  <Link href="/" className="text-ct-dark-600">
+                    Home
+                  </Link>
+                </li>
                 <li>
                   <Link href="/profile" className="text-ct-dark-600">
                     Profile
                   </Link>
                 </li>
-                <li className="cursor-pointer" onClick={handleLogout}>
-                  Logout
+                <li className="cursor-pointer">
+                    <Link href="#" onClick={handleLogout}>Logout</Link>
                 </li>
               </>
             )}
@@ -72,7 +75,7 @@ const Header = () => {
       </header>
       { store.requestLoading && ( <div className="pt-4 pl-2 bg-ct-blue-600 fixed">
          {store.requestLoading && <Spinner color="text-ct-yellow-600" />}
-      </div>)} 
+      </div> )} 
 </>);
 };
 
