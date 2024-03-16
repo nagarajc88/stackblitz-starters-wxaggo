@@ -13,11 +13,13 @@ export async function apiRegisterUser(credentials: string): Promise<User> {
 }
 
 export async function apiLoginUser(credentials: string): Promise<string> {
-  const response:Response = await axios.post('/api/auth/login', credentials, { headers: { "Content-Type": "application/json" } });
-  return handleResponse<UserLoginResponse>(response).then((data) => data.token);
+  const response:any = await axios.post('/api/auth/login', credentials, { headers: { "Content-Type": "application/json" } });
+  localStorage.setItem("token", response.data.token);
+  return handleResponse<UserLoginResponse>(response).then((response:any) => response.data.token);
 }
 
 export async function apiLogoutUser(): Promise<void> {
+  localStorage.removeItem("token");
   const response:Response = await axios.get('/api/auth/logout', { headers: { "Content-Type": "application/json" } });
   return handleResponse<void>(response);
 }

@@ -9,14 +9,14 @@ import { useRouter } from "next/navigation";
 
 const Header = () => {
   const store =  useStore();
-  const user = useSession();
+  const user =   useSession();
   const router = useRouter();
   let userLoggedIn:any = "false";
 
   if(typeof window !== 'undefined') {
        userLoggedIn = localStorage.getItem('loggedIn');
   }
-  
+
   const handleLogout = async () => {
         store.setRequestLoading(true);
         try {
