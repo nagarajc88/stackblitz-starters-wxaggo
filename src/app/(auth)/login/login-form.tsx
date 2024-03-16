@@ -1,15 +1,15 @@
 "use client";
 
-import { LoginUserInput, LoginUserSchema } from "@/src/lib/validations/user.schema";
+import { LoginUserInput, LoginUserSchema } from "@/lib/validations/user.schema";
 import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
-import { apiLoginUser } from "@/src/lib/auth-service";
-import FormInput from "@/src/components/FormInput";
+import { apiLoginUser } from "@/lib/auth-service";
+import FormInput from "@/components/FormInput";
 import Link from "next/link";
-import { LoadingButton } from "@/src/components/LoadingButton";
-import useStore from "@/src/store";
-import { handleApiError } from "@/src/lib/helpers";
+import { LoadingButton } from "@/components/LoadingButton";
+import useStore from "@/store";
+import { handleApiError } from "@/lib/helpers";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 

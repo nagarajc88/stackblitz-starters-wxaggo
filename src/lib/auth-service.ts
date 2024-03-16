@@ -2,6 +2,7 @@ import { User } from "@/models/users/user.model";
 import { UserLoginResponse } from "@/models/users/user.login.response";
 import { UserResponse } from "@/models/users/user.response";
 import axios from '@/lib/axios'
+import { storeToken } from "./actions";
 
 async function handleResponse<T>(response: Response): Promise<T> {
   return response as T;
