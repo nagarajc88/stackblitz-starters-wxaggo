@@ -7,9 +7,26 @@ import { cookies, headers } from 'next/headers';
 import { AuthPageInvisible } from "@/lib/protect-page";
 import { redirect } from "next/navigation";
 import { getLoggedUser, getUserToken } from "@/lib/actions/server-actions";
+const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
 
-export default async function Page(){
-  const isLogged = await getUserToken();
+Page.getInitialProps = async () =>{
+  // const response = await fetch(`${SERVER_ENDPOINT}/api/auth/token`);
+  // console.log(response);
+  // const data = await response.json();
+  // return {data: data};
+  let pageProps:any = {};
+
+    try {
+      let data = await fetch(`${SERVER_ENDPOINT}/api/auth/token`);
+      pageProps["data"] = data;
+    } catch (error) {}
+
+    return { pageProps };
+}
+
+export default async function Page({ pageProps }:any){
+  console.log(pageProps);
+  const isLogged = true; // await getUserToken();
   if (!isLogged) redirect('/');
   let user:any = {};
   return (

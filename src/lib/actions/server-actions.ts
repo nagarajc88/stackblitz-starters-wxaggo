@@ -5,7 +5,7 @@ const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
 
 export async function getUserToken(){
     const tokenDetails:any = await axios.get(`${SERVER_ENDPOINT}/api/auth/token`,{ headers: { Accept: 'application/json' }});
-    console.log(tokenDetails.data);
+    console.log(tokenDetails);
     return tokenDetails.data;
 }
 export async function getLoggedUser() {
