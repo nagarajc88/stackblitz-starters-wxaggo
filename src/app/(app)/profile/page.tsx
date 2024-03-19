@@ -6,20 +6,10 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { cookies, headers } from 'next/headers';
 import { AuthPageInvisible } from "@/lib/protect-page";
 import { redirect } from "next/navigation";
-const SERVER_ENDPOINT = process.env.SERVER_ENDPOINT || "http://localhost:3000";
-async function isLoggedIn() {
-  try {
-      const response = await fetch(`${SERVER_ENDPOINT}/api/users`, { headers: { 'X-User-Id': '1' }});
-      console.log(response);
-      if (response.status === 200) return true;
-  } catch (err:any) {
-      console.log(err);
-  }
-  return true;
-}
+import { getLoggedUser, getUserToken } from "@/lib/actions/server-actions";
 
 export default async function Page(){
-  const isLogged = await isLoggedIn();
+  const isLogged = await getUserToken();
   if (!isLogged) redirect('/');
   let user:any = {};
   return (
